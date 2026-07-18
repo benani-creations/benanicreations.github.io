@@ -1,1 +1,1788 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rivers Youth Future Initiative (RYFI)</title>
+  <meta name="description" content="Rivers Youth Future Initiative (RYFI) — empowering young people through innovation, leadership, digital skills, and community impact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #f7f6f1;
+      --paper: rgba(255,255,255,.72);
+      --paper-strong: rgba(255,255,255,.9);
+      --surface: #ffffff;
+      --text: #14231d;
+      --muted: #557065;
+      --line: rgba(20,35,29,.12);
+      --primary: #0b8f6a;
+      --primary-deep: #08674d;
+      --accent: #f0b429;
+      --accent-soft: #ffe9b0;
+      --leaf: #dbeee7;
+      --river: #cde9f7;
+      --shadow: 0 20px 50px rgba(15, 37, 29, 0.08);
+      --radius: 22px;
+      --radius-sm: 14px;
+      --max: 1220px;
+      --nav-h: 76px;
+    }
 
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Manrope', sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(240,180,41,.12), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(11,143,106,.12), transparent 24%),
+        linear-gradient(180deg, #fbfaf6 0%, #f5f7f3 55%, #f7f6f1 100%);
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+
+    ::selection{
+      background: var(--accent);
+      color: #1f1600;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    button,input,textarea,select{font:inherit}
+
+    .container{
+      width:min(calc(100% - 2rem), var(--max));
+      margin-inline:auto;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:.55rem;
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--primary-deep);
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:34px;
+      height:1.5px;
+      background:linear-gradient(90deg, var(--primary), var(--accent));
+      display:inline-block;
+    }
+
+    h1,h2,h3,h4{
+      margin:0 0 .5rem;
+      font-family:'Sora', sans-serif;
+      line-height:1.03;
+      letter-spacing:-0.03em;
+    }
+
+    h1{
+      font-size:clamp(2.8rem, 7vw, 6.2rem);
+      font-weight:800;
+    }
+
+    h2{
+      font-size:clamp(2rem, 4.5vw, 4rem);
+      font-weight:800;
+    }
+
+    h3{
+      font-size:clamp(1.1rem, 2vw, 1.6rem);
+      font-weight:700;
+    }
+
+    p{
+      margin:0 0 1rem;
+      color:var(--muted);
+      font-size:clamp(1rem, 1.3vw, 1.05rem);
+    }
+
+    .section{
+      padding:clamp(4rem, 8vw, 7rem) 0;
+      position:relative;
+    }
+
+    .grid-2{
+      display:grid;
+      gap:1.5rem;
+      grid-template-columns:1fr;
+    }
+
+    .btn-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.85rem;
+      margin-top:1.5rem;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.7rem;
+      min-height:52px;
+      padding:0 1.2rem;
+      border-radius:999px;
+      border:1px solid transparent;
+      font-weight:800;
+      letter-spacing:-0.01em;
+      transition:transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease, color .25s ease;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+
+    .btn:active{transform:translateY(1px) scale(.99)}
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg, var(--primary), var(--primary-deep));
+      box-shadow:0 14px 28px rgba(11,143,106,.25);
+    }
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 34px rgba(11,143,106,.32);
+    }
+    .btn-secondary{
+      background:rgba(255,255,255,.7);
+      color:var(--text);
+      border-color:rgba(20,35,29,.12);
+      backdrop-filter: blur(12px);
+    }
+    .btn-secondary:hover{
+      transform:translateY(-2px);
+      background:#fff;
+      box-shadow:var(--shadow);
+    }
+
+    /* Header */
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter: blur(14px);
+      background:rgba(247,246,241,.72);
+      border-bottom:1px solid rgba(20,35,29,.08);
+    }
+
+    .nav{
+      min-height:var(--nav-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.9rem;
+      min-width:0;
+    }
+
+    .brand-mark{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 70% 30%, rgba(240,180,41,.95), transparent 24%),
+        linear-gradient(160deg, #0b8f6a 0%, #13a47a 45%, #0a6d91 100%);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.35), 0 12px 20px rgba(11,143,106,.18);
+    }
+
+    .brand-mark::before,
+    .brand-mark::after{
+      content:"";
+      position:absolute;
+      border-radius:999px;
+      background:rgba(255,255,255,.94);
+    }
+
+    .brand-mark::before{
+      width:32px;
+      height:10px;
+      left:8px;
+      bottom:10px;
+      transform:rotate(-10deg);
+      opacity:.95;
+    }
+
+    .brand-mark::after{
+      width:14px;
+      height:14px;
+      right:8px;
+      top:8px;
+      box-shadow:-12px 15px 0 2px rgba(255,255,255,.42);
+    }
+
+    .brand-text{
+      min-width:0;
+    }
+
+    .brand-name{
+      font-family:'Sora', sans-serif;
+      font-weight:800;
+      font-size:1rem;
+      letter-spacing:-0.03em;
+      color:var(--text);
+      line-height:1.05;
+    }
+
+    .brand-sub{
+      display:block;
+      font-size:.72rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-top:.2rem;
+    }
+
+    .nav-links{
+      display:none;
+      align-items:center;
+      gap:1.1rem;
+    }
+
+    .nav-links a{
+      position:relative;
+      font-weight:700;
+      color:#274037;
+      padding:.3rem 0;
+    }
+
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-4px;
+      width:100%;
+      height:2px;
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform .25s ease;
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      border-radius:999px;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after{
+      transform:scaleX(1);
+    }
+
+    .menu-btn{
+      width:48px;
+      height:48px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.72);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+    .menu-btn:hover{background:#fff; box-shadow:var(--shadow)}
+    .menu-icon, .menu-icon::before, .menu-icon::after{
+      width:20px;
+      height:2px;
+      background:var(--text);
+      border-radius:999px;
+      display:block;
+      position:relative;
+      transition:.25s ease;
+    }
+    .menu-icon::before,.menu-icon::after{
+      content:"";
+      position:absolute;
+      left:0;
+    }
+    .menu-icon::before{top:-6px}
+    .menu-icon::after{top:6px}
+
+    .menu-btn.active .menu-icon{background:transparent}
+    .menu-btn.active .menu-icon::before{top:0; transform:rotate(45deg)}
+    .menu-btn.active .menu-icon::after{top:0; transform:rotate(-45deg)}
+
+    .mobile-menu{
+      display:grid;
+      grid-template-rows:0fr;
+      transition:grid-template-rows .3s ease;
+      overflow:hidden;
+    }
+    .mobile-menu.open{grid-template-rows:1fr}
+    .mobile-menu-inner{
+      overflow:hidden;
+      padding-bottom:1rem;
+    }
+    .mobile-menu nav{
+      display:grid;
+      gap:.6rem;
+      padding-top:.6rem;
+    }
+    .mobile-menu a{
+      padding:1rem;
+      border-radius:16px;
+      background:rgba(255,255,255,.65);
+      border:1px solid var(--line);
+      font-weight:700;
+    }
+
+    /* Page visibility */
+    .page{
+      display:none;
+      animation:fadePage .45s ease;
+    }
+    .page.active{display:block}
+    @keyframes fadePage{
+      from{opacity:0; transform:translateY(8px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+
+    /* Hero */
+    .hero{
+      padding:clamp(2rem, 5vw, 3.5rem) 0 clamp(4rem, 8vw, 6rem);
+      position:relative;
+      overflow:hidden;
+      min-height:calc(100vh - var(--nav-h));
+      display:flex;
+      align-items:center;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.58) 0%, rgba(255,255,255,.18) 45%, transparent 100%),
+        radial-gradient(circle at 80% 20%, rgba(11,143,106,.12), transparent 24%),
+        radial-gradient(circle at 82% 70%, rgba(240,180,41,.12), transparent 20%);
+      pointer-events:none;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:2rem;
+      align-items:center;
+      position:relative;
+      z-index:2;
+    }
+
+    .hero-copy{
+      max-width:700px;
+    }
+
+    .hero-copy p.lead{
+      font-size:clamp(1.05rem, 2vw, 1.22rem);
+      max-width:62ch;
+      color:#486358;
+      margin-top:1rem;
+    }
+
+    .impact-strip{
+      margin-top:2rem;
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:.8rem;
+      max-width:560px;
+    }
+
+    .impact-item{
+      background:var(--paper);
+      border:1px solid rgba(20,35,29,.08);
+      backdrop-filter: blur(14px);
+      border-radius:18px;
+      padding:1rem 1rem .9rem;
+      box-shadow:var(--shadow);
+    }
+
+    .impact-item strong{
+      display:block;
+      font-family:'Sora', sans-serif;
+      font-size:clamp(1.3rem, 3vw, 2rem);
+      line-height:1;
+      margin-bottom:.25rem;
+    }
+
+    .hero-visual{
+      position:relative;
+      min-height:420px;
+    }
+
+    .orbital{
+      position:relative;
+      width:min(100%, 560px);
+      aspect-ratio:1 / 1.02;
+      margin-inline:auto;
+      border-radius:36px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.75), rgba(255,255,255,.45)),
+        linear-gradient(180deg, #e9f5f1 0%, #edf7fb 100%);
+      border:1px solid rgba(20,35,29,.08);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      backdrop-filter: blur(12px);
+    }
+
+    .orbital::before{
+      content:"";
+      position:absolute;
+      inset:6%;
+      border-radius:30px;
+      border:1px dashed rgba(11,143,106,.22);
+    }
+
+    .scene{
+      position:absolute;
+      inset:0;
+    }
+
+    .wave{
+      position:absolute;
+      inset:auto 0 0 0;
+      height:42%;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.4), transparent 32%),
+        linear-gradient(180deg, rgba(10,109,145,.18) 0%, rgba(10,109,145,.3) 100%);
+      clip-path:path("M0,90 C110,40 210,145 330,90 C430,45 525,100 700,40 L700,260 L0,260 Z");
+      opacity:.95;
+    }
+
+    .hill{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(.2px);
+    }
+
+    .hill.one{
+      width:70%;
+      height:34%;
+      background:#d9efe3;
+      left:-10%;
+      bottom:19%;
+    }
+
+    .hill.two{
+      width:80%;
+      height:30%;
+      background:#c8e7d8;
+      right:-18%;
+      bottom:22%;
+    }
+
+    .person{
+      position:absolute;
+      width:120px;
+      height:240px;
+      border-radius:60px 60px 24px 24px;
+      background:linear-gradient(180deg, #1b3f34 0%, #0f2f26 100%);
+      bottom:20%;
+      left:52%;
+      transform:translateX(-50%);
+      box-shadow:0 20px 40px rgba(20,35,29,.18);
+    }
+
+    .person::before{
+      content:"";
+      position:absolute;
+      width:72px;
+      height:72px;
+      border-radius:50%;
+      background:#f0b48b;
+      top:-45px;
+      left:24px;
+      box-shadow:0 -8px 0 8px #17392f inset;
+    }
+
+    .person::after{
+      content:"";
+      position:absolute;
+      width:150px;
+      height:72px;
+      left:-14px;
+      top:70px;
+      background:linear-gradient(90deg, #f0b429 0%, #f7c95e 100%);
+      clip-path:polygon(10% 18%, 95% 0, 100% 22%, 36% 44%, 24% 100%, 0 92%, 8% 56%);
+      transform:rotate(-7deg);
+      border-radius:24px;
+    }
+
+    .bubble{
+      position:absolute;
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(20,35,29,.08);
+      box-shadow:var(--shadow);
+      border-radius:20px;
+      backdrop-filter: blur(10px);
+      padding:.8rem .95rem;
+      max-width:180px;
+      animation:float 5.2s ease-in-out infinite;
+    }
+
+    .bubble strong{
+      display:block;
+      font-size:.9rem;
+      color:var(--text);
+      margin-bottom:.2rem;
+    }
+
+    .bubble small{
+      display:block;
+      color:var(--muted);
+      font-weight:700;
+      font-size:.76rem;
+    }
+
+    .bubble.one{top:10%; left:8%}
+    .bubble.two{top:16%; right:8%; animation-delay:.8s}
+    .bubble.three{bottom:8%; left:10%; animation-delay:1.6s}
+
+    .spark{
+      position:absolute;
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 12px rgba(240,180,41,.12);
+      animation:pulse 2.6s infinite;
+    }
+    .spark.s1{top:16%; left:44%}
+    .spark.s2{top:44%; right:14%; background:var(--primary); box-shadow:0 0 0 12px rgba(11,143,106,.12)}
+    .spark.s3{bottom:24%; left:20%; background:#0a6d91; box-shadow:0 0 0 12px rgba(10,109,145,.1)}
+
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(1); opacity:1}
+      50%{transform:scale(1.08); opacity:.76}
+    }
+
+    /* Shared feature blocks */
+    .split{
+      display:grid;
+      gap:1.3rem;
+      grid-template-columns:1fr;
+      align-items:start;
+    }
+
+    .panel{
+      padding:1.4rem;
+      border-radius:var(--radius);
+      background:var(--paper);
+      border:1px solid rgba(20,35,29,.08);
+      backdrop-filter: blur(12px);
+      box-shadow:var(--shadow);
+    }
+
+    .metric-row{
+      display:grid;
+      gap:1rem;
+      grid-template-columns:repeat(2, 1fr);
+      margin-top:1.2rem;
+    }
+
+    .metric{
+      padding:1.1rem;
+      border-radius:18px;
+      background:rgba(255,255,255,.66);
+      border:1px solid rgba(20,35,29,.08);
+    }
+
+    .metric strong{
+      display:block;
+      font-family:'Sora', sans-serif;
+      font-size:1.6rem;
+      line-height:1;
+      margin-bottom:.35rem;
+    }
+
+    .feature-lines{
+      display:grid;
+      gap:1rem;
+      margin-top:1.6rem;
+    }
+
+    .feature-line{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:1rem;
+      align-items:start;
+      padding:1rem 0;
+      border-top:1px solid rgba(20,35,29,.08);
+    }
+
+    .feature-line:first-child{border-top:0;padding-top:0}
+    .icon-badge{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, rgba(11,143,106,.12), rgba(240,180,41,.18));
+      border:1px solid rgba(20,35,29,.08);
+      color:var(--primary-deep);
+      flex-shrink:0;
+    }
+
+    /* Home blocks */
+    .home-band{
+      display:grid;
+      gap:1rem;
+      grid-template-columns:1fr;
+    }
+
+    .value-block{
+      padding:1.4rem;
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.58));
+      border:1px solid rgba(20,35,29,.08);
+      box-shadow:var(--shadow);
+      min-height:100%;
+    }
+
+    .value-block p{max-width:34ch}
+
+    .mosaic{
+      display:grid;
+      gap:1rem;
+      grid-template-columns:1fr 1fr;
+      grid-auto-rows:minmax(130px, auto);
+    }
+
+    .mosaic > div{
+      border-radius:24px;
+      border:1px solid rgba(20,35,29,.08);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+      background:#fff;
+    }
+
+    .mosaic-a{
+      grid-column:span 2;
+      min-height:260px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(240,180,41,.22), transparent 24%),
+        linear-gradient(135deg, #e7f4ee 0%, #dff0f8 100%);
+    }
+
+    .mosaic-b{
+      min-height:180px;
+      background:
+        linear-gradient(160deg, rgba(11,143,106,.12), rgba(11,143,106,.02)),
+        #ffffff;
+    }
+
+    .mosaic-c{
+      min-height:180px;
+      background:
+        linear-gradient(160deg, rgba(240,180,41,.18), rgba(240,180,41,.03)),
+        #fffdf5;
+    }
+
+    .mosaic-d{
+      grid-column:span 2;
+      min-height:130px;
+      background:
+        linear-gradient(90deg, #ffffff 0%, #f6fbf8 100%);
+    }
+
+    .mosaic-label{
+      position:absolute;
+      left:1rem;
+      bottom:1rem;
+      padding:.55rem .75rem;
+      border-radius:999px;
+      background:rgba(255,255,255,.82);
+      border:1px solid rgba(20,35,29,.08);
+      font-weight:800;
+      font-size:.82rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .mosaic-art{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+    }
+
+    .rings, .rings::before, .rings::after{
+      position:absolute;
+      content:"";
+      border-radius:50%;
+      border:1px solid rgba(10,109,145,.16);
+    }
+    .rings{
+      width:210px;height:210px;right:8%;top:10%;
+    }
+    .rings::before{inset:18px}
+    .rings::after{inset:38px}
+
+    .path-line{
+      position:absolute;
+      left:6%;
+      right:6%;
+      top:52%;
+      height:2px;
+      background:linear-gradient(90deg, rgba(11,143,106,.2), rgba(240,180,41,.45), rgba(10,109,145,.2));
+      transform:rotate(-7deg);
+    }
+
+    .path-node{
+      position:absolute;
+      width:14px;height:14px;border-radius:50%;
+      background:var(--primary);
+      box-shadow:0 0 0 8px rgba(11,143,106,.08);
+    }
+    .path-node.n1{left:16%; top:46%}
+    .path-node.n2{left:42%; top:52%; background:var(--accent); box-shadow:0 0 0 8px rgba(240,180,41,.12)}
+    .path-node.n3{right:18%; top:40%; background:#0a6d91; box-shadow:0 0 0 8px rgba(10,109,145,.08)}
+
+    /* About timeline */
+    .timeline{
+      display:grid;
+      gap:1rem;
+      margin-top:1.5rem;
+    }
+
+    .timeline-step{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:1rem;
+      align-items:start;
+      position:relative;
+      padding-left:.1rem;
+    }
+
+    .timeline-step:not(:last-child)::after{
+      content:"";
+      position:absolute;
+      left:18px;
+      top:42px;
+      width:2px;
+      height:calc(100% + .4rem);
+      background:linear-gradient(180deg, rgba(11,143,106,.26), rgba(240,180,41,.12));
+    }
+
+    .timeline-dot{
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      background:linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow:0 10px 20px rgba(11,143,106,.2);
+      margin-top:.15rem;
+    }
+
+    /* Gallery */
+    .gallery-wrap{
+      display:grid;
+      gap:1rem;
+      grid-template-columns:1fr;
+    }
+
+    .gallery-stage{
+      display:grid;
+      gap:1rem;
+      grid-template-columns:1fr;
+    }
+
+    .gallery-panel{
+      min-height:250px;
+      border-radius:28px;
+      overflow:hidden;
+      position:relative;
+      background:
+        linear-gradient(140deg, rgba(255,255,255,.82), rgba(255,255,255,.54)),
+        linear-gradient(135deg, #eef8f4 0%, #e9f5fb 100%);
+      border:1px solid rgba(20,35,29,.08);
+      box-shadow:var(--shadow);
+    }
+
+    .gallery-panel.large{min-height:420px}
+
+    .gallery-art{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+    }
+
+    .pattern-grid{
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(11,143,106,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11,143,106,.05) 1px, transparent 1px);
+      background-size:34px 34px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.9), rgba(0,0,0,.45));
+    }
+
+    .shape{
+      position:absolute;
+      border-radius:28px;
+      filter:drop-shadow(0 18px 32px rgba(20,35,29,.14));
+    }
+
+    .shape.sq1{
+      width:130px;height:130px;left:8%;top:12%;
+      background:linear-gradient(135deg, #0b8f6a, #54c3a1);
+      transform:rotate(-10deg);
+    }
+    .shape.sq2{
+      width:180px;height:180px;right:10%;top:18%;
+      background:linear-gradient(135deg, #f0b429, #ffd36b);
+      border-radius:50%;
+    }
+    .shape.sq3{
+      width:220px;height:96px;left:18%;bottom:16%;
+      background:linear-gradient(135deg, #0a6d91, #80c7e9);
+      transform:rotate(12deg);
+    }
+    .shape.sq4{
+      width:120px;height:120px;right:12%;bottom:12%;
+      background:linear-gradient(135deg, #ffffff, #e9f4ee);
+      border:1px solid rgba(20,35,29,.08);
+      transform:rotate(-12deg);
+    }
+
+    .gallery-caption{
+      position:absolute;
+      left:1rem;
+      right:1rem;
+      bottom:1rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:.5rem;
+      align-items:end;
+      justify-content:space-between;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(20,35,29,.08);
+      border-radius:20px;
+      padding:1rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+      padding:.45rem .7rem;
+      border-radius:999px;
+      background:rgba(11,143,106,.08);
+      color:var(--primary-deep);
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.03em;
+      text-transform:uppercase;
+    }
+
+    .thumb-strip{
+      display:grid;
+      gap:1rem;
+      grid-template-columns:repeat(2, 1fr);
+    }
+
+    .thumb{
+      min-height:180px;
+      border-radius:22px;
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(20,35,29,.08);
+      box-shadow:var(--shadow);
+      background:linear-gradient(145deg, #ffffff, #f4faf7);
+    }
+
+    .thumb::before{
+      content:"";
+      position:absolute;
+      inset:12%;
+      border-radius:22px;
+      border:1px dashed rgba(20,35,29,.12);
+    }
+
+    .thumb .mini-orb{
+      position:absolute;
+      border-radius:50%;
+      opacity:.92;
+    }
+
+    .thumb:nth-child(1) .mini-orb:nth-child(1){width:74px;height:74px;background:#0b8f6a;left:18%;top:18%}
+    .thumb:nth-child(1) .mini-orb:nth-child(2){width:110px;height:110px;background:#f0b429;right:14%;bottom:12%}
+    .thumb:nth-child(2) .mini-orb:nth-child(1){width:120px;height:48px;border-radius:999px;background:#0a6d91;left:14%;bottom:24%}
+    .thumb:nth-child(2) .mini-orb:nth-child(2){width:68px;height:68px;background:#f0b429;right:18%;top:16%}
+    .thumb:nth-child(3) .mini-orb:nth-child(1){width:90px;height:90px;background:#dcefe7;left:12%;top:22%; border:1px solid rgba(20,35,29,.06)}
+    .thumb:nth-child(3) .mini-orb:nth-child(2){width:120px;height:56px;border-radius:18px;background:#0b8f6a;right:10%;bottom:18%}
+    .thumb:nth-child(4) .mini-orb:nth-child(1){width:88px;height:88px;background:#f8d986;left:12%;bottom:12%}
+    .thumb:nth-child(4) .mini-orb:nth-child(2){width:100px;height:100px;background:#0a6d91;right:14%;top:14%}
+
+    .thumb-label{
+      position:absolute;
+      left:1rem;
+      bottom:1rem;
+      font-weight:800;
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(20,35,29,.08);
+      padding:.45rem .7rem;
+      border-radius:999px;
+      font-size:.8rem;
+    }
+
+    /* Courses */
+    .course-stack{
+      display:grid;
+      gap:1rem;
+      margin-top:1.5rem;
+    }
+
+    .course-row{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:1rem;
+      align-items:stretch;
+      padding:1.15rem;
+      border-radius:24px;
+      background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.62));
+      border:1px solid rgba(20,35,29,.08);
+      box-shadow:var(--shadow);
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+
+    .course-row:hover{
+      transform:translateY(-4px);
+      box-shadow:0 24px 44px rgba(15,37,29,.12);
+    }
+
+    .course-id{
+      display:flex;
+      align-items:center;
+      gap:.9rem;
+    }
+
+    .course-num{
+      width:54px;
+      height:54px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      font-family:'Sora', sans-serif;
+      font-weight:800;
+      background:linear-gradient(135deg, rgba(11,143,106,.16), rgba(240,180,41,.18));
+      color:var(--primary-deep);
+      border:1px solid rgba(20,35,29,.08);
+      flex-shrink:0;
+    }
+
+    .course-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.55rem;
+      margin-top:.75rem;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      padding:.45rem .7rem;
+      border-radius:999px;
+      background:#f6faf8;
+      border:1px solid rgba(20,35,29,.08);
+      font-size:.8rem;
+      color:#335247;
+      font-weight:700;
+    }
+
+    .course-cta{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+    }
+
+    /* CTA */
+    .cta{
+      position:relative;
+      overflow:hidden;
+    }
+
+    .cta-box{
+      border-radius:34px;
+      background:
+        radial-gradient(circle at 8% 15%, rgba(240,180,41,.18), transparent 24%),
+        radial-gradient(circle at 90% 78%, rgba(255,255,255,.12), transparent 22%),
+        linear-gradient(135deg, #0d7d5f, #0a6d91);
+      color:#fff;
+      padding:clamp(1.7rem, 4vw, 3rem);
+      box-shadow:0 28px 60px rgba(10,109,145,.18);
+      position:relative;
+      isolation:isolate;
+    }
+
+    .cta-box::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size:36px 36px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.9), rgba(0,0,0,.25));
+      z-index:-1;
+    }
+
+    .cta-box p{
+      color:rgba(255,255,255,.84);
+      max-width:60ch;
+    }
+
+    .cta-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.8rem;
+      margin-top:1.4rem;
+    }
+
+    .btn-light{
+      background:#fff;
+      color:#0f3d31;
+    }
+    .btn-light:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 28px rgba(0,0,0,.14);
+    }
+
+    .btn-outline-light{
+      background:rgba(255,255,255,.1);
+      border-color:rgba(255,255,255,.22);
+      color:#fff;
+    }
+    .btn-outline-light:hover{
+      background:rgba(255,255,255,.18);
+      transform:translateY(-2px);
+    }
+
+    /* Footer */
+    .site-footer{
+      padding:2.2rem 0 3rem;
+      border-top:1px solid rgba(20,35,29,.08);
+    }
+
+    .footer-grid{
+      display:grid;
+      gap:1.5rem;
+      grid-template-columns:1fr;
+    }
+
+    .footer-note{
+      color:var(--muted);
+      max-width:52ch;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.8rem;
+    }
+
+    .footer-links a{
+      font-weight:700;
+      color:#2c463d;
+    }
+
+    /* reveal */
+    .reveal{
+      opacity:0;
+      transform:translateY(22px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .stagger > *{
+      opacity:0;
+      transform:translateY(18px);
+      animation:staggerIn .7s ease forwards;
+    }
+    .stagger > *:nth-child(1){animation-delay:.08s}
+    .stagger > *:nth-child(2){animation-delay:.16s}
+    .stagger > *:nth-child(3){animation-delay:.24s}
+    .stagger > *:nth-child(4){animation-delay:.32s}
+    .stagger > *:nth-child(5){animation-delay:.4s}
+    .stagger > *:nth-child(6){animation-delay:.48s}
+
+    @keyframes staggerIn{
+      to{opacity:1; transform:translateY(0)}
+    }
+
+    /* desktop */
+    @media (min-width: 768px){
+      .impact-strip{grid-template-columns:repeat(4, 1fr)}
+      .home-band{grid-template-columns:repeat(3, 1fr)}
+      .grid-2{grid-template-columns:1.02fr .98fr}
+      .split{grid-template-columns:1fr 1fr}
+      .gallery-wrap{grid-template-columns:1.05fr .95fr}
+      .gallery-stage{grid-template-rows:1fr auto}
+      .thumb-strip{grid-template-columns:repeat(2, 1fr)}
+      .course-row{grid-template-columns:1.2fr 1fr auto; align-items:center}
+      .footer-grid{grid-template-columns:1.3fr .7fr}
+    }
+
+    @media (min-width: 980px){
+      .nav-links{display:flex}
+      .menu-btn, .mobile-menu{display:none}
+      .hero-grid{grid-template-columns:1.05fr .95fr; gap:2.5rem}
+      .hero-visual{min-height:540px}
+      .course-stack{gap:1.1rem}
+      .gallery-stage{grid-template-columns:1fr; grid-template-rows:auto auto}
+    }
+
+    /* Focus */
+    a:focus-visible, button:focus-visible{
+      outline:3px solid rgba(240,180,41,.65);
+      outline-offset:3px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#home" class="brand nav-link" data-page="home" aria-label="Rivers Youth Future Initiative Home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="brand-name">Rivers Youth Future Initiative</span>
+          <span class="brand-sub">RYFI</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#home" class="nav-link active" data-page="home">Home</a>
+        <a href="#about" class="nav-link" data-page="about">About</a>
+        <a href="#gallery" class="nav-link" data-page="gallery">Gallery</a>
+        <a href="#courses" class="nav-link" data-page="courses">Courses</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="menu-icon"></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="container mobile-menu-inner">
+        <nav aria-label="Mobile navigation">
+          <a href="#home" class="nav-link active" data-page="home">Home</a>
+          <a href="#about" class="nav-link" data-page="about">About</a>
+          <a href="#gallery" class="nav-link" data-page="gallery">Gallery</a>
+          <a href="#courses" class="nav-link" data-page="courses">Courses</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section class="page active" id="page-home" data-page="home" aria-labelledby="home-title">
+      <div class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy stagger">
+            <span class="eyebrow">Youth • Innovation • Community</span>
+            <h1 id="home-title">Building bold futures for young people in Rivers State.</h1>
+            <p class="lead">
+              Rivers Youth Future Initiative (RYFI) is a youth-focused platform creating pathways through digital learning,
+              leadership development, practical skills, and community transformation. We exist to equip young people with the confidence,
+              tools, and vision to shape a better tomorrow.
+            </p>
+
+            <div class="btn-row">
+              <a href="#courses" class="btn btn-primary nav-link" data-page="courses">Explore Courses</a>
+              <a href="#about" class="btn btn-secondary nav-link" data-page="about">Learn About RYFI</a>
+            </div>
+
+            <div class="impact-strip">
+              <div class="impact-item">
+                <strong>500+</strong>
+                <span>Youths reached through programs</span>
+              </div>
+              <div class="impact-item">
+                <strong>12</strong>
+                <span>Community-led learning tracks</span>
+              </div>
+              <div class="impact-item">
+                <strong>30+</strong>
+                <span>Mentors, facilitators, and partners</span>
+              </div>
+              <div class="impact-item">
+                <strong>100%</strong>
+                <span>Responsive access across devices</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal">
+            <div class="orbital" aria-hidden="true">
+              <div class="scene">
+                <div class="hill one"></div>
+                <div class="hill two"></div>
+                <div class="wave"></div>
+                <div class="person"></div>
+
+                <div class="bubble one">
+                  <strong>Digital Skills</strong>
+                  <small>Practical learning for real opportunities</small>
+                </div>
+                <div class="bubble two">
+                  <strong>Leadership</strong>
+                  <small>Confidence, responsibility, impact</small>
+                </div>
+                <div class="bubble three">
+                  <strong>Community Action</strong>
+                  <small>Growth rooted in local change</small>
+                </div>
+
+                <span class="spark s1"></span>
+                <span class="spark s2"></span>
+                <span class="spark s3"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="section">
+        <div class="container split">
+          <div class="reveal">
+            <span class="eyebrow">What we stand for</span>
+            <h2>Trustworthy, inspiring, and future-facing.</h2>
+            <p>
+              RYFI’s identity is built around empowerment, access, and action. We create a credible platform where young people can learn,
+              connect, and grow while partners and donors can clearly see lasting community value.
+            </p>
+
+            <div class="feature-lines">
+              <div class="feature-line">
+                <div class="icon-badge" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3l7 4v5c0 4.5-3 7.9-7 9-4-1.1-7-4.5-7-9V7l7-4z" stroke="currentColor" stroke-width="1.8"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3>Built on trust</h3>
+                  <p>Clear mission, transparent programs, and a design language that reflects stability and professionalism.</p>
+                </div>
+              </div>
+              <div class="feature-line">
+                <div class="icon-badge" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 19l5-7 4 4 5-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17 8h2v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3>Driven by innovation</h3>
+                  <p>We prepare youth for modern opportunities with practical, relevant, and skills-based learning experiences.</p>
+                </div>
+              </div>
+              <div class="feature-line">
+                <div class="icon-badge" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M16 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="1.8"/>
+                    <circle cx="9.5" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M20 8v6M17 11h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3>Centered on people</h3>
+                  <p>Every program is designed to uplift youth, strengthen community engagement, and create visible social impact.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mosaic reveal" aria-hidden="true">
+            <div class="mosaic-a">
+              <div class="mosaic-art">
+                <div class="rings"></div>
+                <div class="path-line"></div>
+                <span class="path-node n1"></span>
+                <span class="path-node n2"></span>
+                <span class="path-node n3"></span>
+              </div>
+              <div class="mosaic-label">Pathways to opportunity</div>
+            </div>
+            <div class="mosaic-b">
+              <div class="mosaic-label">Skills development</div>
+            </div>
+            <div class="mosaic-c">
+              <div class="mosaic-label">Youth leadership</div>
+            </div>
+            <div class="mosaic-d">
+              <div class="mosaic-label">Community transformation</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="home-band">
+            <article class="value-block reveal">
+              <span class="eyebrow">01</span>
+              <h3>Empowerment</h3>
+              <p>Helping young people discover potential, build confidence, and turn talent into meaningful progress.</p>
+            </article>
+            <article class="value-block reveal">
+              <span class="eyebrow">02</span>
+              <h3>Learning</h3>
+              <p>Offering accessible, practical education that connects today’s youth to tomorrow’s opportunities.</p>
+            </article>
+            <article class="value-block reveal">
+              <span class="eyebrow">03</span>
+              <h3>Impact</h3>
+              <p>Creating programs that do more than inform — they inspire action, responsibility, and measurable change.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cta">
+        <div class="container">
+          <div class="cta-box reveal">
+            <span class="eyebrow" style="color:#fff">Join the movement</span>
+            <h2>Invest in youth. Strengthen the future.</h2>
+            <p>
+              Whether you are a young learner, community partner, donor, or volunteer, RYFI offers a place to contribute to sustainable youth development.
+            </p>
+            <div class="cta-actions">
+              <a href="#gallery" class="btn btn-light nav-link" data-page="gallery">View Community Stories</a>
+              <a href="#courses" class="btn btn-outline-light nav-link" data-page="courses">See Learning Tracks</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="page" id="page-about" data-page="about" aria-labelledby="about-title">
+      <section class="section">
+        <div class="container split">
+          <div class="reveal">
+            <span class="eyebrow">About RYFI</span>
+            <h2 id="about-title">A youth initiative shaped by purpose, partnership, and possibility.</h2>
+            <p>
+              Rivers Youth Future Initiative is committed to helping young people in Rivers State access the tools, support, and knowledge they need to thrive.
+              We believe youth development must be relevant, inclusive, and rooted in the realities of local communities.
+            </p>
+            <p>
+              Our work bridges education, mentorship, innovation, and civic responsibility. By combining modern learning with social impact,
+              we help youth build futures that are both personally fulfilling and community-driven.
+            </p>
+
+            <div class="metric-row">
+              <div class="metric">
+                <strong>Vision</strong>
+                <span>A future where every young person can lead, learn, and contribute meaningfully.</span>
+              </div>
+              <div class="metric">
+                <strong>Mission</strong>
+                <span>To equip youth with practical skills, leadership values, and pathways for growth.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel reveal">
+            <span class="eyebrow">Core approach</span>
+            <h3>How RYFI creates value</h3>
+            <div class="timeline">
+              <div class="timeline-step">
+                <div class="timeline-dot" aria-hidden="true"></div>
+                <div>
+                  <h3>Access</h3>
+                  <p>We reduce barriers by creating inclusive opportunities for learning, mentorship, and engagement.</p>
+                </div>
+              </div>
+              <div class="timeline-step">
+                <div class="timeline-dot" aria-hidden="true"></div>
+                <div>
+                  <h3>Activation</h3>
+                  <p>We move from inspiration to practice through workshops, community sessions, and guided projects.</p>
+                </div>
+              </div>
+              <div class="timeline-step">
+                <div class="timeline-dot" aria-hidden="true"></div>
+                <div>
+                  <h3>Transformation</h3>
+                  <p>We help young people apply what they learn toward employment, entrepreneurship, and community leadership.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container grid-2">
+          <div class="panel reveal">
+            <span class="eyebrow">Why it matters</span>
+            <h3>Youth are not just beneficiaries — they are builders.</h3>
+            <p>
+              At RYFI, we recognize that young people are a powerful force for innovation and social progress. The right environment,
+              support system, and educational pathways can unlock enormous potential across communities.
+            </p>
+            <p>
+              Our programs are designed to inspire responsibility, creativity, and action while building real-world competence.
+            </p>
+          </div>
+
+          <div class="panel reveal">
+            <span class="eyebrow">What we value</span>
+            <div class="feature-lines">
+              <div class="feature-line">
+                <div class="icon-badge" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 20s-7-4.35-7-10a4 4 0 017-2.65A4 4 0 0119 10c0 5.65-7 10-7 10z" stroke="currentColor" stroke-width="1.8"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3>Integrity</h3>
+                  <p>We build with honesty, accountability, and respect for the people we serve.</p>
+                </div>
+              </div>
+              <div class="feature-line">
+                <div class="icon-badge" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 19l6-6 4 4 6-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3>Growth</h3>
+                  <p>We believe youth development is continuous and should prepare people for evolving opportunities.</p>
+                </div>
+              </div>
+              <div class="feature-line">
+                <div class="icon-badge" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M8.5 12.5l2.2 2.2 4.8-5.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3>Excellence</h3>
+                  <p>We aim for quality experiences that are useful, inspiring, and impactful in real contexts.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="page" id="page-gallery" data-page="gallery" aria-labelledby="gallery-title">
+      <section class="section">
+        <div class="container">
+          <div class="reveal" style="max-width:760px; margin-bottom:2rem;">
+            <span class="eyebrow">Gallery</span>
+            <h2 id="gallery-title">Moments of learning, expression, and community impact.</h2>
+            <p>
+              This gallery presents the spirit of RYFI through energetic visual compositions that reflect youth creativity,
+              collaboration, and progress. It is designed to feel vibrant, hopeful, and active — just like the communities we serve.
+            </p>
+          </div>
+
+          <div class="gallery-wrap">
+            <div class="gallery-stage">
+              <article class="gallery-panel large reveal">
+                <div class="gallery-art" aria-hidden="true">
+                  <div class="pattern-grid"></div>
+                  <div class="shape sq1"></div>
+                  <div class="shape sq2"></div>
+                  <div class="shape sq3"></div>
+                  <div class="shape sq4"></div>
+                </div>
+                <div class="gallery-caption">
+                  <div>
+                    <span class="tag">Youth Workshop</span>
+                    <h3 style="margin-top:.55rem;">Creative problem-solving sessions</h3>
+                  </div>
+                  <p style="max-width:28ch; margin:0;">Interactive spaces where young people learn by doing, building, and collaborating.</p>
+                </div>
+              </article>
+
+              <article class="gallery-panel reveal">
+                <div class="gallery-art" aria-hidden="true" style="background:
+                  radial-gradient(circle at 20% 25%, rgba(11,143,106,.22), transparent 18%),
+                  radial-gradient(circle at 72% 35%, rgba(240,180,41,.22), transparent 18%),
+                  radial-gradient(circle at 52% 72%, rgba(10,109,145,.18), transparent 18%),
+                  linear-gradient(145deg, #ffffff 0%, #edf8f3 100%);">
+                </div>
+                <div class="gallery-caption">
+                  <div>
+                    <span class="tag">Mentorship</span>
+                    <h3 style="margin-top:.55rem;">Guidance that opens doors</h3>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="thumb-strip">
+              <div class="thumb reveal">
+                <span class="mini-orb"></span>
+                <span class="mini-orb"></span>
+                <div class="thumb-label">Leadership Camp</div>
+              </div>
+              <div class="thumb reveal">
+                <span class="mini-orb"></span>
+                <span class="mini-orb"></span>
+                <div class="thumb-label">Digital Training</div>
+              </div>
+              <div class="thumb reveal">
+                <span class="mini-orb"></span>
+                <span class="mini-orb"></span>
+                <div class="thumb-label">Community Outreach</div>
+              </div>
+              <div class="thumb reveal">
+                <span class="mini-orb"></span>
+                <span class="mini-orb"></span>
+                <div class="thumb-label">Innovation Hub</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- COURSES -->
+    <section class="page" id="page-courses" data-page="courses" aria-labelledby="courses-title">
+      <section class="section">
+        <div class="container">
+          <div class="reveal" style="max-width:760px;">
+            <span class="eyebrow">Courses & Programs</span>
+            <h2 id="courses-title">Practical learning tracks for confident, capable youth.</h2>
+            <p>
+              RYFI courses are structured to build relevant skills, expand career awareness, and strengthen leadership capacity.
+              Each program is designed to be engaging, community-oriented, and beginner-friendly.
+            </p>
+          </div>
+
+          <div class="course-stack">
+            <article class="course-row reveal">
+              <div>
+                <div class="course-id">
+                  <div class="course-num">01</div>
+                  <div>
+                    <h3>Digital Literacy & Productivity</h3>
+                    <p>Foundational computer skills, internet use, online communication, and workplace productivity tools.</p>
+                  </div>
+                </div>
+                <div class="course-meta">
+                  <span class="pill">Beginner Friendly</span>
+                  <span class="pill">4–6 Weeks</span>
+                  <span class="pill">Hybrid Learning</span>
+                </div>
+              </div>
+              <p>
+                Ideal for young people starting their digital journey and preparing for school, work, or entrepreneurship.
+              </p>
+              <div class="course-cta">
+                <a href="#home" class="btn btn-secondary nav-link" data-page="home">Get Started</a>
+              </div>
+            </article>
+
+            <article class="course-row reveal">
+              <div>
+                <div class="course-id">
+                  <div class="course-num">02</div>
+                  <div>
+                    <h3>Leadership & Civic Engagement</h3>
+                    <p>Communication, teamwork, personal development, advocacy, and responsible community participation.</p>
+                  </div>
+                </div>
+                <div class="course-meta">
+                  <span class="pill">Interactive Workshops</span>
+                  <span class="pill">Project Based</span>
+                  <span class="pill">Mentor Supported</span>
+                </div>
+              </div>
+              <p>
+                Designed to help youth lead with confidence and understand how to make meaningful contributions in society.
+              </p>
+              <div class="course-cta">
+                <a href="#about" class="btn btn-secondary nav-link" data-page="about">Learn More</a>
+              </div>
+            </article>
+
+            <article class="course-row reveal">
+              <div>
+                <div class="course-id">
+                  <div class="course-num">03</div>
+                  <div>
+                    <h3>Entrepreneurship & Innovation</h3>
+                    <p>Idea development, opportunity spotting, problem solving, basic business thinking, and creative execution.</p>
+                  </div>
+                </div>
+                <div class="course-meta">
+                  <span class="pill">Startup Mindset</span>
+                  <span class="pill">Youth Enterprise</span>
+                  <span class="pill">Practical Exercises</span>
+                </div>
+              </div>
+              <p>
+                Supports young people who want to launch initiatives, small ventures, or socially impactful solutions.
+              </p>
+              <div class="course-cta">
+                <a href="#gallery" class="btn btn-secondary nav-link" data-page="gallery">See Inspiration</a>
+              </div>
+            </article>
+
+            <article class="course-row reveal">
+              <div>
+                <div class="course-id">
+                  <div class="course-num">04</div>
+                  <div>
+                    <h3>Career Readiness & Personal Branding</h3>
+                    <p>CV writing, interview preparation, confidence building, networking, and professional communication.</p>
+                  </div>
+                </div>
+                <div class="course-meta">
+                  <span class="pill">Career Focused</span>
+                  <span class="pill">Soft Skills</span>
+                  <span class="pill">Work Readiness</span>
+                </div>
+              </div>
+              <p>
+                A practical pathway for youth preparing for employment, internships, volunteer opportunities, or next-step growth.
+              </p>
+              <div class="course-cta">
+                <a href="#home" class="btn btn-primary nav-link" data-page="home">Apply Interest</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cta">
+        <div class="container">
+          <div class="cta-box reveal">
+            <span class="eyebrow" style="color:#fff">Ready to partner?</span>
+            <h2>Let’s create more opportunities for young people together.</h2>
+            <p>
+              RYFI welcomes schools, NGOs, community leaders, private organizations, and development partners who want to support
+              youth-focused learning and transformation in Rivers State.
+            </p>
+            <div class="cta-actions">
+              <a href="mailto:hello@ryfi.org" class="btn btn-light">Contact RYFI</a>
+              <a href="#about" class="btn btn-outline-light nav-link" data-page="about">Our Mission</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:1rem;">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">
+            <span class="brand-name">Rivers Youth Future Initiative</span>
+            <span class="brand-sub">Empowering youth for tomorrow</span>
+          </span>
+        </div>
+        <p class="footer-note">
+          A responsive, modern web presence for RYFI — designed to communicate trust, innovation, inclusion, and youth empowerment across desktop, tablet, and mobile.
+        </p>
+      </div>
+      <div>
+        <div class="footer-links">
+          <a href="#home" class="nav-link" data-page="home">Home</a>
+          <a href="#about" class="nav-link" data-page="about">About</a>
+          <a href="#gallery" class="nav-link" data-page="gallery">Gallery</a>
+          <a href="#courses" class="nav-link" data-page="courses">Courses</a>
+        </div>
+        <p style="margin-top:1rem;">© <span id="year"></span> RYFI. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const pages = document.querySelectorAll('.page');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function setActivePage(pageName) {
+      pages.forEach(page => {
+        page.classList.toggle('active', page.dataset.page === pageName);
+      });
+
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.page === pageName);
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (mobileMenu.classList.contains('open')) {
+        mobileMenu.classList.remove('open');
+        menuBtn.classList.remove('active');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      history.replaceState(null, '', '#' + pageName);
+      initReveal();
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        const pageName = link.dataset.page;
+        if (pageName) {
+          e.preventDefault();
+          setActivePage(pageName);
+        }
+      });
+    });
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuBtn.classList.toggle('active', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    function initFromHash() {
+      const hash = window.location.hash.replace('#', '');
+      const valid = ['home', 'about', 'gallery', 'courses'];
+      setActivePage(valid.includes(hash) ? hash : 'home');
+    }
+
+    function initReveal() {
+      const reveals = document.querySelectorAll('.page.active .reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16 });
+
+      reveals.forEach(el => {
+        el.classList.remove('visible');
+        observer.observe(el);
+      });
+    }
+
+    window.addEventListener('hashchange', initFromHash);
+    document.getElementById('year').textContent = new Date().getFullYear();
+    initFromHash();
+  </script>
+</body>
+</html>
+ 
